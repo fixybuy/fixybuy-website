@@ -2618,6 +2618,464 @@ header#header .account-btn .account-avatar svg{
 .book-tile>span:last-child{color:#000!important;}
 </style>
 <style id="fixybuy-founder-social-icons">.fixybuy-founder-links{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}.fixybuy-founder-links .fixybuy-social-link{width:34px!important;height:34px!important}.fixybuy-founder-links .fixybuy-social-icon{width:18px;height:18px}@media(max-width:600px){.fixybuy-founder-links{justify-content:center;gap:10px}.fixybuy-founder-links .fixybuy-social-link{width:36px!important;height:36px!important}}</style>
+<style id="fixybuy-after-inverter-service-banners">
+/* Three service offer banners after Inverter & Appliances — same left-copy/right-image format as the existing banners. */
+.fixybuy-service-offer-banners{
+  margin:16px 4% 22px!important;display:flex!important;flex-direction:column!important;gap:14px!important;
+}
+.fixybuy-service-offer-banner{
+  position:relative!important;display:grid!important;grid-template-columns:54% 46%!important;
+  min-height:205px!important;height:205px!important;overflow:hidden!important;border-radius:18px!important;
+  border:1px solid #e1e9ee!important;background:linear-gradient(105deg,#fff 0%,#f5fbff 58%,#edf7fd 100%)!important;
+  box-shadow:0 10px 28px rgba(31,55,73,.08)!important;
+}
+.fixybuy-service-offer-copy{
+  padding:24px 18px 28px 6%!important;display:flex!important;flex-direction:column!important;justify-content:center!important;
+  align-items:flex-start!important;color:#14231e!important;z-index:2!important;
+}
+.fixybuy-service-offer-badge{
+  display:inline-flex!important;align-items:center!important;background:#119c65!important;color:#fff!important;
+  padding:5px 9px!important;border-radius:6px!important;font-size:10px!important;line-height:1!important;font-weight:800!important;margin-bottom:9px!important;
+}
+.fixybuy-service-offer-copy h3{margin:0 0 7px!important;font-size:22px!important;line-height:1.12!important;font-weight:800!important;color:#14231e!important;}
+.fixybuy-service-offer-main{display:block!important;margin:0 0 7px!important;color:#1984cf!important;font-size:16px!important;line-height:1.15!important;font-weight:900!important;}
+.fixybuy-service-offer-copy h3 strong{font-weight:900!important;color:#1984cf!important;}
+.fixybuy-service-offer-copy p{margin:0!important;max-width:310px!important;color:#5c6970!important;font-size:12px!important;line-height:1.35!important;}
+.fixybuy-service-offer-image{min-height:205px!important;height:205px!important;overflow:hidden!important;background:#fff!important;}
+.fixybuy-service-offer-image img{width:100%!important;height:100%!important;display:block!important;object-fit:cover!important;object-position:center!important;}
+@media(max-width:760px){
+  .fixybuy-service-offer-banners{margin:12px 4.5% 18px!important;gap:10px!important;}
+  .fixybuy-service-offer-banner{grid-template-columns:56% 44%!important;height:195px!important;min-height:195px!important;border-radius:16px!important;}
+  .fixybuy-service-offer-copy{padding:22px 8px 25px 6%!important;}
+  .fixybuy-service-offer-copy h3{font-size:19px!important;margin-bottom:6px!important;}
+  .fixybuy-service-offer-main{font-size:13px!important;margin-bottom:6px!important;}
+  .fixybuy-service-offer-copy p{font-size:10.5px!important;max-width:175px!important;}
+  .fixybuy-service-offer-badge{font-size:9px!important;padding:5px 8px!important;margin-bottom:8px!important;}
+  .fixybuy-service-offer-image{height:195px!important;min-height:195px!important;}
+}
+</style>
+
+
+<style id="fixybuy-microwave-banner-share">
+.fixybuy-service-offer-share{
+  position:absolute!important;right:14px!important;top:14px!important;width:42px!important;height:42px!important;
+  z-index:8!important;display:grid!important;place-items:center!important;padding:0!important;
+}
+.fixybuy-service-offer-share svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.fixybuy-service-offer-share:hover{background:#000!important;color:#fff!important;}
+.fixybuy-service-offer-share:focus-visible{outline:2px solid #000;outline-offset:2px;}
+@media(max-width:760px){.fixybuy-service-offer-share{right:10px!important;top:10px!important;width:38px!important;height:38px!important;}.fixybuy-service-offer-share svg{width:19px;height:19px;}}
+</style>
+<style id="fixybuy-service-offer-carousel-overrides">
+/* FixyBuy service offer banners: one-at-a-time automatic carousel. */
+.fixybuy-service-offer-banners{
+  position:relative!important;display:block!important;min-height:205px!important;height:205px!important;overflow:hidden!important;
+  width:100%!important;margin:12px 0 18px!important;padding:0!important;
+}
+.fixybuy-service-offer-banner{
+  position:absolute!important;inset:0!important;width:100%!important;height:205px!important;min-height:205px!important;
+  display:grid!important;grid-template-columns:56% 44%!important;
+  opacity:0!important;visibility:hidden!important;transform:translateX(100%)!important;
+  transition:transform .65s ease,opacity .65s ease,visibility .65s ease!important;
+  pointer-events:none!important;
+}
+.fixybuy-service-offer-banner.is-active{opacity:1!important;visibility:visible!important;transform:translateX(0)!important;pointer-events:auto!important;}
+.fixybuy-service-offer-banner.is-prev{transform:translateX(-100%)!important;}
+.fixybuy-service-offer-banner:nth-child(1) .fixybuy-service-offer-badge{background:#16c784!important;}
+.fixybuy-service-offer-banner:nth-child(2) .fixybuy-service-offer-badge{background:#1984cf!important;border-radius:999px!important;}
+.fixybuy-service-offer-banner:nth-child(3) .fixybuy-service-offer-badge{background:#f59e0b!important;border-radius:4px 12px 4px 12px!important;}
+.fixybuy-service-offer-dots{
+  position:absolute!important;left:5%!important;bottom:9px!important;display:flex!important;gap:6px!important;z-index:8!important;
+}
+.fixybuy-service-offer-dots button{
+  width:24px!important;height:4px!important;border:0!important;border-radius:8px!important;background:#c9d2d7!important;
+  padding:0!important;cursor:pointer!important;transition:width .25s ease,background .25s ease!important;
+}
+.fixybuy-service-offer-dots button.active{width:34px!important;background:#16c784!important;}
+@media(max-width:700px){
+  .fixybuy-service-offer-banners{width:100%!important;height:195px!important;min-height:195px!important;margin:12px 0 18px!important;}
+  .fixybuy-service-offer-banner{height:195px!important;min-height:195px!important;grid-template-columns:56% 44%!important;}
+  .fixybuy-service-offer-dots{bottom:7px!important;left:6%!important;}
+}
+</style>
+
+<style id="fixybuy-mobile-fan-flipkart-scroll">
+/* Mobile-only Fan section redesign: Flipkart-inspired shell + vertical stagger reveal. */
+@media(max-width:700px){
+  .fan-section{
+    position:relative!important;
+    margin:14px 0 18px!important;
+    padding:14px 10px 12px!important;
+    border-radius:20px!important;
+    border:1px solid rgba(38,82,210,.16)!important;
+    background:linear-gradient(135deg,#2d58e8 0%,#4f6ff0 52%,#735be8 100%)!important;
+    box-shadow:0 8px 24px rgba(46,78,190,.16)!important;
+    overflow:hidden!important;
+  }
+  .fan-section::before{
+    content:"";
+    position:absolute!important;
+    width:150px!important;height:150px!important;
+    right:-58px!important;top:-72px!important;
+    border-radius:50%!important;
+    background:rgba(255,255,255,.13)!important;
+    pointer-events:none!important;
+  }
+  .fan-section::after{
+    content:"";
+    position:absolute!important;
+    width:95px!important;height:95px!important;
+    left:-52px!important;bottom:-55px!important;
+    border-radius:50%!important;
+    background:rgba(255,255,255,.09)!important;
+    pointer-events:none!important;
+  }
+  .fan-section>h2{
+    position:relative!important;
+    z-index:2!important;
+    margin:0 4px 12px!important;
+    padding:0!important;
+    color:#fff!important;
+    font-size:20px!important;
+    line-height:1.2!important;
+    font-weight:850!important;
+    letter-spacing:.1px!important;
+  }
+  .fan-section .row{
+    position:relative!important;
+    z-index:2!important;
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+    width:100%!important;
+    box-sizing:border-box!important;
+    margin:0!important;
+    padding:10px!important;
+    overflow:visible!important;
+    border-radius:17px!important;
+    background:#fff!important;
+    box-shadow:0 3px 12px rgba(24,52,130,.10)!important;
+  }
+  .fan-section.fan-reveal-enabled .fan-card{
+    min-width:0!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    border-radius:12px!important;
+    border:1px solid #edf0f4!important;
+    background:#fff!important;
+    box-shadow:0 2px 9px rgba(29,52,82,.07)!important;
+    overflow:hidden!important;
+    display:flex!important;
+    flex-direction:column!important;
+    opacity:0!important;
+    transform:translateY(30px) scale(.96)!important;
+    transition:opacity .55s ease,transform .65s cubic-bezier(.2,.75,.25,1),box-shadow .25s ease!important;
+    will-change:opacity,transform!important;
+  }
+  .fan-section.fan-reveal-enabled .fan-card.fan-card-visible{
+    opacity:1!important;
+    transform:translateY(0) scale(1)!important;
+  }
+  .fan-section .fan-card:active{
+    transform:scale(.985)!important;
+  }
+  .fan-section .fan-card .pic{
+    width:100%!important;
+    height:112px!important;
+    min-height:112px!important;
+    background:#fff!important;
+    display:grid!important;
+    place-items:center!important;
+    overflow:hidden!important;
+  }
+  .fan-section .fan-card .service-img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:contain!important;
+    padding:7px!important;
+    display:block!important;
+    background:#fff!important;
+  }
+  .fan-section .fan-card .label{
+    position:static!important;
+    padding:6px 8px 2px!important;
+    margin:0!important;
+    color:#17231f!important;
+    font-size:12px!important;
+    line-height:1.18!important;
+    font-weight:800!important;
+    text-shadow:none!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  .fan-section .fan-card .meta-row{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:4px!important;
+    padding:3px 8px 8px!important;
+    margin:0!important;
+    min-height:0!important;
+    height:auto!important;
+  }
+  .fan-section .fan-card .rating{
+    padding:0!important;
+    margin:0!important;
+    color:#43515a!important;
+    font-size:9px!important;
+    font-weight:700!important;
+    line-height:1!important;
+    white-space:nowrap!important;
+  }
+  .fan-section .fan-card .rating .star{
+    color:#f4b400!important;
+    margin-right:3px!important;
+  }
+  .fan-section .fan-card .review-count{
+    color:#7d8990!important;
+  }
+  .fan-section .fan-card .service-price{
+    display:flex!important;
+    align-items:center!important;
+    gap:3px!important;
+    padding:0!important;
+    margin:0 0 0 auto!important;
+    color:#17231f!important;
+    font-size:10.5px!important;
+    font-weight:900!important;
+    line-height:1!important;
+    white-space:nowrap!important;
+  }
+  .fan-section .fan-card .old-price{
+    color:#9aa5ab!important;
+    text-decoration:line-through!important;
+    font-size:8.5px!important;
+    font-weight:500!important;
+  }
+  .fan-section .fan-card .current-price{
+    color:#17231f!important;
+    font-size:11px!important;
+    font-weight:900!important;
+    margin-left:0!important;
+  }
+  .fan-section .fan-card .inspection{display:none!important;}
+}
+@media(prefers-reduced-motion:reduce){
+  .fan-section.fan-reveal-enabled .fan-card{transition:none!important;transform:none!important;opacity:1!important;}
+}
+</style>
+
+<style id="fixybuy-mobile-fan-horizontal-peek-final">
+/* Mobile Fan: two-row horizontal service rail. Shows 4 full services + the next 2 peeking from the right. */
+@media(max-width:700px){
+  .fan-section{
+    position:relative!important;
+    margin:14px 0 18px!important;
+    padding:14px 10px 12px!important;
+    border-radius:20px!important;
+    border:1px solid rgba(38,82,210,.16)!important;
+    background:linear-gradient(135deg,#2d58e8 0%,#4f6ff0 52%,#735be8 100%)!important;
+    box-shadow:0 8px 24px rgba(46,78,190,.16)!important;
+    overflow:hidden!important;
+  }
+  .fan-section::before{
+    content:"";position:absolute!important;width:150px!important;height:150px!important;
+    right:-58px!important;top:-72px!important;border-radius:50%!important;
+    background:rgba(255,255,255,.13)!important;pointer-events:none!important;
+  }
+  .fan-section::after{
+    content:"";position:absolute!important;width:95px!important;height:95px!important;
+    left:-52px!important;bottom:-55px!important;border-radius:50%!important;
+    background:rgba(255,255,255,.09)!important;pointer-events:none!important;
+  }
+  .fan-section>h2{
+    position:relative!important;z-index:3!important;margin:0 4px 12px!important;
+    padding:0!important;color:#fff!important;font-size:20px!important;line-height:1.2!important;
+    font-weight:850!important;letter-spacing:.1px!important;
+  }
+  .fan-section .row{
+    position:relative!important;z-index:2!important;
+    display:grid!important;
+    grid-template-rows:repeat(2,minmax(0,1fr))!important;
+    grid-auto-flow:column!important;
+    grid-auto-columns:44%!important;
+    gap:10px!important;
+    width:100%!important;height:365px!important;max-height:365px!important;
+    box-sizing:border-box!important;margin:0!important;padding:10px!important;
+    overflow-x:auto!important;overflow-y:hidden!important;
+    overscroll-behavior-x:contain!important;
+    -webkit-overflow-scrolling:touch!important;
+    scroll-snap-type:x proximity!important;scrollbar-width:none!important;
+    background:#fff!important;border-radius:17px!important;
+    box-shadow:0 3px 12px rgba(24,52,130,.10)!important;
+    align-content:stretch!important;
+  }
+  .fan-section .row::-webkit-scrollbar{display:none!important;}
+  .fan-section .fan-card{
+    min-width:0!important;width:auto!important;height:auto!important;min-height:0!important;
+    border-radius:12px!important;border:1px solid #edf0f4!important;background:#fff!important;
+    box-shadow:0 2px 9px rgba(29,52,82,.07)!important;overflow:hidden!important;
+    display:flex!important;flex-direction:column!important;opacity:1!important;
+    transform:none!important;scroll-snap-align:start!important;
+  }
+  .fan-section .fan-card .pic{
+    width:100%!important;height:112px!important;min-height:112px!important;background:#fff!important;
+    display:grid!important;place-items:center!important;overflow:hidden!important;
+  }
+  .fan-section .fan-card .service-img{
+    width:100%!important;height:100%!important;object-fit:contain!important;padding:7px!important;
+    display:block!important;background:#fff!important;
+  }
+  .fan-section .fan-card .label{
+    position:static!important;padding:6px 8px 2px!important;margin:0!important;color:#17231f!important;
+    font-size:12px!important;line-height:1.18!important;font-weight:800!important;text-shadow:none!important;
+    white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+  }
+  .fan-section .fan-card .meta-row{
+    display:flex!important;align-items:center!important;justify-content:space-between!important;gap:4px!important;
+    padding:3px 8px 8px!important;margin:0!important;min-height:0!important;height:auto!important;
+  }
+  .fan-section .fan-card .rating{
+    padding:0!important;margin:0!important;color:#43515a!important;font-size:9px!important;font-weight:700!important;
+    line-height:1!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;min-width:0!important;
+  }
+  .fan-section .fan-card .rating .star{color:#f4b400!important;margin-right:3px!important;}
+  .fan-section .fan-card .review-count{color:#7d8990!important;}
+  .fan-section .fan-card .service-price{
+    display:flex!important;align-items:center!important;gap:3px!important;padding:0!important;margin:0 0 0 auto!important;
+    color:#17231f!important;font-size:10.5px!important;font-weight:900!important;line-height:1!important;white-space:nowrap!important;
+  }
+  .fan-section .fan-card .old-price{color:#9aa5ab!important;text-decoration:line-through!important;font-size:8.5px!important;font-weight:500!important;}
+  .fan-section .fan-card .current-price{color:#17231f!important;font-size:11px!important;font-weight:900!important;margin-left:0!important;}
+  .fan-section .fan-card .inspection{display:none!important;}
+}
+</style>
+
+<style id="fixybuy-mobile-ac-match-fan-final">
+
+/* Mobile Fan: two-row horizontal service rail. Shows 4 full services + the next 2 peeking from the right. */
+@media(max-width:700px){
+  .ac-installation-repair-section{
+    position:relative!important;
+    margin:14px 0 18px!important;
+    padding:14px 10px 12px!important;
+    border-radius:20px!important;
+    border:1px solid rgba(38,82,210,.16)!important;
+    background:linear-gradient(135deg,#2d58e8 0%,#4f6ff0 52%,#735be8 100%)!important;
+    box-shadow:0 8px 24px rgba(46,78,190,.16)!important;
+    overflow:hidden!important;
+  }
+  .ac-installation-repair-section::before{
+    content:"";position:absolute!important;width:150px!important;height:150px!important;
+    right:-58px!important;top:-72px!important;border-radius:50%!important;
+    background:rgba(255,255,255,.13)!important;pointer-events:none!important;
+  }
+  .ac-installation-repair-section::after{
+    content:"";position:absolute!important;width:95px!important;height:95px!important;
+    left:-52px!important;bottom:-55px!important;border-radius:50%!important;
+    background:rgba(255,255,255,.09)!important;pointer-events:none!important;
+  }
+  .ac-installation-repair-section>h2{
+    position:relative!important;z-index:3!important;margin:0 4px 12px!important;
+    padding:0!important;color:#fff!important;font-size:20px!important;line-height:1.2!important;
+    font-weight:850!important;letter-spacing:.1px!important;
+  }
+  .ac-installation-repair-section .row{
+    position:relative!important;z-index:2!important;
+    display:grid!important;
+    grid-template-rows:repeat(2,minmax(0,1fr))!important;
+    grid-auto-flow:column!important;
+    grid-auto-columns:44%!important;
+    gap:10px!important;
+    width:100%!important;height:365px!important;max-height:365px!important;
+    box-sizing:border-box!important;margin:0!important;padding:10px!important;
+    overflow-x:auto!important;overflow-y:hidden!important;
+    overscroll-behavior-x:contain!important;
+    -webkit-overflow-scrolling:touch!important;
+    scroll-snap-type:x proximity!important;scrollbar-width:none!important;
+    background:#fff!important;border-radius:17px!important;
+    box-shadow:0 3px 12px rgba(24,52,130,.10)!important;
+    align-content:stretch!important;
+  }
+  .ac-installation-repair-section .row::-webkit-scrollbar{display:none!important;}
+  .ac-installation-repair-section .inverter-stabilizer-card{
+    min-width:0!important;width:auto!important;height:auto!important;min-height:0!important;
+    border-radius:12px!important;border:1px solid #edf0f4!important;background:#fff!important;
+    box-shadow:0 2px 9px rgba(29,52,82,.07)!important;overflow:hidden!important;
+    display:flex!important;flex-direction:column!important;opacity:1!important;
+    transform:none!important;scroll-snap-align:start!important;
+  }
+  .ac-installation-repair-section .inverter-stabilizer-card .pic{
+    width:100%!important;height:112px!important;min-height:112px!important;background:#fff!important;
+    display:grid!important;place-items:center!important;overflow:hidden!important;
+  }
+  .ac-installation-repair-section .inverter-stabilizer-card .service-img{
+    width:100%!important;height:100%!important;object-fit:contain!important;padding:7px!important;
+    display:block!important;background:#fff!important;
+  }
+  .ac-installation-repair-section .inverter-stabilizer-card .label{
+    position:static!important;padding:6px 8px 2px!important;margin:0!important;color:#17231f!important;
+    font-size:12px!important;line-height:1.18!important;font-weight:800!important;text-shadow:none!important;
+    white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+  }
+  .ac-installation-repair-section .inverter-stabilizer-card .meta-row{
+    display:flex!important;align-items:center!important;justify-content:space-between!important;gap:4px!important;
+    padding:3px 8px 8px!important;margin:0!important;min-height:0!important;height:auto!important;
+  }
+  .ac-installation-repair-section .inverter-stabilizer-card .rating{
+    padding:0!important;margin:0!important;color:#43515a!important;font-size:9px!important;font-weight:700!important;
+    line-height:1!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;min-width:0!important;
+  }
+  .ac-installation-repair-section .inverter-stabilizer-card .rating .star{color:#f4b400!important;margin-right:3px!important;}
+  .ac-installation-repair-section .inverter-stabilizer-card .review-count{color:#7d8990!important;}
+  .ac-installation-repair-section .inverter-stabilizer-card .service-price{
+    display:flex!important;align-items:center!important;gap:3px!important;padding:0!important;margin:0 0 0 auto!important;
+    color:#17231f!important;font-size:10.5px!important;font-weight:900!important;line-height:1!important;white-space:nowrap!important;
+  }
+  .ac-installation-repair-section .inverter-stabilizer-card .old-price{color:#9aa5ab!important;text-decoration:line-through!important;font-size:8.5px!important;font-weight:500!important;}
+  .ac-installation-repair-section .inverter-stabilizer-card .current-price{color:#17231f!important;font-size:11px!important;font-weight:900!important;margin-left:0!important;}
+  .ac-installation-repair-section .inverter-stabilizer-card .inspection{display:none!important;}
+}
+
+</style>
+<style id="fixybuy-mobile-chimney-fan-background-match">
+/* Mobile only: Chimney section uses the same background as the Fan section. Desktop remains unchanged. */
+@media(max-width:700px){
+  .chimney-installation-services-section{
+    background:#fff4e6!important;
+  }
+}
+</style>
+<style id="fixybuy-mobile-chimney-background-match">
+/* Mobile only: Chimney section uses the same background color as Fan section. Desktop remains unchanged. */
+@media(max-width:700px){
+  .chimney-installation-services-section{background:#fff4e6!important;}
+}
+</style>
+
+<style id="fixybuy-mobile-ac-scroll-reveal-match-fan">
+/* AC cards: exact same mobile scroll-reveal behavior as the existing Fan cards. */
+@media(max-width:700px){
+  .ac-installation-repair-section.ac-reveal-enabled .inverter-stabilizer-card{
+    opacity:0!important;
+    transform:translateY(30px) scale(.96)!important;
+    transition:opacity .55s ease,transform .65s cubic-bezier(.2,.75,.25,1),box-shadow .25s ease!important;
+    will-change:opacity,transform!important;
+  }
+  .ac-installation-repair-section.ac-reveal-enabled .inverter-stabilizer-card.ac-card-visible{
+    opacity:1!important;
+    transform:translateY(0) scale(1)!important;
+  }
+  .ac-installation-repair-section .inverter-stabilizer-card:active{
+    transform:scale(.985)!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .ac-installation-repair-section.ac-reveal-enabled .inverter-stabilizer-card{transition:none!important;transform:none!important;opacity:1!important;}
+}
+</style>
 </head>
 <body>
 <header id="header">
@@ -2978,6 +3436,22 @@ header#header .account-btn .account-avatar svg{
 <div class="meta-row"><div class="rating"><span class="star">★</span>4.9<span class="review-count"> (2.9k reviews)</span></div><div class="service-price"><span class="old-price">₹199</span> <span class="current-price">₹99</span></div></div>
 </div>
 <div class="card fan-card" data-whatsapp-catalogue="https://wa.me/c/918617892989">
+<div class="pic"><img alt="Regular Ceiling Fan Installation" class="service-img" decoding="async" loading="lazy" src="data:image/webp;base64,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"/></div><div class="label">Regular Ceiling Fan Installation</div>
+<div class="meta-row"><div class="rating"><span class="star">★</span>5.0<span class="review-count"> (2.8k reviews)</span></div><div class="service-price"><span class="old-price">₹249</span> <span class="current-price">₹149</span></div></div>
+</div>
+<div class="card fan-card" data-whatsapp-catalogue="https://wa.me/c/918617892989">
+<div class="pic"><img alt="Smart/BLDC Fan Replacement" class="service-img" decoding="async" loading="lazy" src="data:image/webp;base64,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"/></div><div class="label">Smart/BLDC Fan Replacement</div>
+<div class="meta-row"><div class="rating"><span class="star">★</span>4.1<span class="review-count"> (3.9k reviews)</span></div><div class="service-price"><span class="old-price">₹349</span> <span class="current-price">₹249</span></div></div>
+</div>
+<div class="card fan-card" data-whatsapp-catalogue="https://wa.me/c/918617892989">
+<div class="pic"><img alt="Smart/BLDC Fan Installation" class="service-img" decoding="async" loading="lazy" src="data:image/webp;base64,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"/></div><div class="label">Smart/BLDC Fan Installation</div>
+<div class="meta-row"><div class="rating"><span class="star">★</span>4.5<span class="review-count"> (2.6k reviews)</span></div><div class="service-price"><span class="old-price">₹299</span> <span class="current-price">₹199</span></div></div>
+</div>
+<div class="card fan-card" data-whatsapp-catalogue="https://wa.me/c/918617892989">
+<div class="pic"><img alt="Exhaust Fan Uninstall" class="service-img" decoding="async" loading="lazy" src="data:image/webp;base64,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"/></div><div class="label">Exhaust Fan Uninstall</div>
+<div class="meta-row"><div class="rating"><span class="star">★</span>4.9<span class="review-count"> (2.9k reviews)</span></div><div class="service-price"><span class="old-price">₹199</span> <span class="current-price">₹99</span></div></div>
+</div>
+<div class="card fan-card" data-whatsapp-catalogue="https://wa.me/c/918617892989">
 <div class="pic"><img alt="Wall/ Tower Fan Installation" class="service-img" decoding="async" loading="lazy" src="data:image/webp;base64,UklGRvICAABXRUJQVlA4IOYCAADQFgCdASq0AK8APqFOok0mJCOiIvFZeMAUCWlu7op0FhnAu3Tv/2ZflZZVV/Y/DLeBjPLLq/GgU09Lp5qXpiO/vfZRWQAXNbgf2z5xR1aAP7ihiwvyo12m1BYzC7Zx/MKNiRvH8JUlbCGo/8FtDWDKIBBOy6M2MBUOTm+mqsXUjO/gayACv1CJrmLuo4efKW8E/2cQOunInb+yACkMEyUUjx7OGwSEBHZVTmPf6IZw76r+yAHP11QqL8aFRfjIAAD+/lRAFPyY+dxsJpqr46OiaR0zDwmFdWAS35AknKEdwzzXm93E31C8t+wHWcJH1/2FfJYHz3hdjrODOTTHaVVcD6k9tlX2pXG8cN2ihdJLqgc/roELc9Em6y7lkENfHeimZQDGkjOhSsov7b/fQP9Lo6wDcqlZZXN4tWTkw9gs6skpDSqy/FqSd6H2RofQS6QzdL2vyq8qlroIvbsjNfSdGzXS3M+AqEfYwkLe9OlzPmaK9tRf0fD5PJBHy4/E+vHA3U9T0piNgy4iImhNax8R52eZRkPKejdXBcya15hGidzx+2AkvPTQdAg6VRQGuywenCn64q0hV7wMbu1LHgYyxUc/R5oLpZ/xslMyEVjjHvgAgai8RijPnAFJq3L/KRL6KzngUhoGYMndqkbncZmOBfpBWO6Q29U6lKWfjzyxDrQqapTcmlbDpmgNeoYbkf7zvqNu8CwXJrApJ2wqeDpAxgHIdVosXezEdB7DVnADw8Z4T7NxayRZQoLbIPVaA9UAo3Q6yv/n9XXggyocwaXwfeVYgH8CiHnxHtI0CJJImsHcfqkYMN/mNej39Rs5EJbDFXu6Wjsis0we/nc+DDXUcxEkSToLgXfo3wblTCmITrCG1jXpNXCAcapLWglJfzfzponjGxnQnxMPcD7L6ecUEcGzzdJSrjT1732XCymHWnd3AbjmTeW8xdYDZUEEcfZwZ1MQtAklOnY8pkve61mEIAEAAAAA"/></div><div class="label">Wall/ Tower Fan Installation</div>
 <div class="meta-row"><div class="rating"><span class="star">★</span>4.7<span class="review-count"> (4.5k reviews)</span></div><div class="service-price"><span class="old-price">₹249</span> <span class="current-price">₹149</span></div></div>
 </div>
@@ -3177,7 +3651,35 @@ header#header .account-btn .account-avatar svg{
 <div class="meta-row"><div class="rating"><span class="star">★</span>4.2<span class="review-count"> (4k reviews)</span></div><div class="service-price"><span class="old-price">₹479</span> <span class="current-price">₹379</span></div></div>
 </div>
 </div>
-</section><section class="section ac-installation-repair-section" id="ac-installation-repair">
+</section><section class="fixybuy-service-offer-banners" aria-label="FixyBuy service offers after Inverter &amp; Appliances" id="fixybuyServiceOfferCarousel">
+  <article class="fixybuy-service-offer-banner is-active">
+    <button aria-label="Share AC Service" class="hero-icon hero-share-button fixybuy-service-offer-share" id="acShareBtn" title="Share AC Service" type="button">
+      <svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><circle cx="18" cy="5" r="2.5"></circle><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="19" r="2.5"></circle><path d="M8.2 10.9 15.8 6.1M8.2 13.1l7.6 4.8"></path></svg>
+    </button>
+    <div class="fixybuy-service-offer-copy"><span class="fixybuy-service-offer-badge">AC OFFER</span><h3>AC Service</h3><strong class="fixybuy-service-offer-main">First time booking get upto 50% off</strong><p>Professional AC service, cleaning and repair at your doorstep.</p></div>
+    <div class="fixybuy-service-offer-image"><img alt="AC service technician repairing an air conditioner" loading="lazy" decoding="async" src="https://lirp.cdn-website.com/e79c13e2/dms3rep/multi/opt/shutterstock_2609259929-1280w.jpg"/></div>
+  </article>
+  <article class="fixybuy-service-offer-banner">
+    <button aria-label="Share Microwave Checkup" class="hero-icon hero-share-button fixybuy-service-offer-share" id="microwaveShareBtn" title="Share Microwave Checkup" type="button">
+      <svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><circle cx="18" cy="5" r="2.5"></circle><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="19" r="2.5"></circle><path d="M8.2 10.9 15.8 6.1M8.2 13.1l7.6 4.8"></path></svg>
+    </button>
+    <div class="fixybuy-service-offer-copy"><span class="fixybuy-service-offer-badge">KITCHEN CHECK</span><h3>Microwave Checkup</h3><strong class="fixybuy-service-offer-main">Just ₹199 only</strong><p>Quick doorstep microwave checkup for your everyday kitchen appliance.</p></div>
+    <div class="fixybuy-service-offer-image"><img alt="Technician repairing a microwave in a workshop" loading="lazy" decoding="async" src="https://www.camarilloappliancerepairca.net/assets/img/media/6.jpg"/></div>
+  </article>
+  <article class="fixybuy-service-offer-banner">
+    <button aria-label="Share Washing Machine Repair" class="hero-icon hero-share-button fixybuy-service-offer-share" id="washingShareBtn" title="Share Washing Machine Repair" type="button">
+      <svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><circle cx="18" cy="5" r="2.5"></circle><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="19" r="2.5"></circle><path d="M8.2 10.9 15.8 6.1M8.2 13.1l7.6 4.8"></path></svg>
+    </button>
+    <div class="fixybuy-service-offer-copy"><span class="fixybuy-service-offer-badge">HOME APPLIANCE</span><h3>Washing Machine Repair</h3><strong class="fixybuy-service-offer-main">Starting at ₹199 only</strong><p>Dependable washing machine repair and service from FixyBuy technicians.</p></div>
+    <div class="fixybuy-service-offer-image"><img alt="Technician repairing machinery for home appliance service" loading="lazy" decoding="async" src="https://fixitnow.co.in/new/uploads/fixitnow.co.in_home_appliances_repair_image.png"/></div>
+  </article>
+  <div class="fixybuy-service-offer-dots" aria-label="Service offer banner navigation">
+    <button type="button" class="active" aria-label="Show AC Service offer"></button>
+    <button type="button" aria-label="Show Microwave Checkup offer"></button>
+    <button type="button" aria-label="Show Washing Machine Repair offer"></button>
+  </div>
+</section>
+<section class="section ac-installation-repair-section" id="ac-installation-repair">
 <h2>AC Service</h2>
 <div class="row">
 <div class="card inverter-stabilizer-card" data-whatsapp-catalogue="https://wa.me/c/918617892989">
@@ -4223,6 +4725,221 @@ document.addEventListener('DOMContentLoaded',function(){
       btn.innerHTML=visible?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18"></path><path d="M10.6 6.2A10.7 10.7 0 0 1 12 6c6 0 9.5 6 9.5 6a18.7 18.7 0 0 1-3.2 3.8"></path><path d="M6.1 6.1C3.9 7.7 2.5 12 2.5 12s3.5 6 9.5 6c1.3 0 2.5-.3 3.6-.8"></path></svg>';
     });
   });
+})();
+</script>
+
+<script id="fixybuy-service-offer-carousel-script">
+(function(){
+  const root=document.getElementById('fixybuyServiceOfferCarousel');
+  if(!root) return;
+  const slides=Array.from(root.querySelectorAll('.fixybuy-service-offer-banner'));
+  const dots=Array.from(root.querySelectorAll('.fixybuy-service-offer-dots button'));
+  if(slides.length<2) return;
+  let current=0,timer=null,touchX=null;
+
+  function show(index){
+    const next=(index+slides.length)%slides.length;
+    slides.forEach((slide,i)=>{
+      slide.classList.remove('is-active','is-prev');
+      if(i===current && i!==next) slide.classList.add('is-prev');
+    });
+    slides[next].classList.add('is-active');
+    dots.forEach((dot,i)=>dot.classList.toggle('active',i===next));
+    current=next;
+  }
+
+  function start(){
+    clearInterval(timer);
+    timer=setInterval(()=>show(current+1),4500);
+  }
+
+  function goToService(index){
+    const targets=['ac-installation-repair','microwave-checkup','washing-machine-services'];
+    const target=document.getElementById(targets[index]);
+    if(target){
+      if(window.fixybuyScrollTo) window.fixybuyScrollTo(target);
+      else target.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }
+
+  dots.forEach((dot,i)=>dot.addEventListener('click',()=>{show(i);start();}));
+
+  // Match the top 3 banners: pause on hover, resume on leave.
+  root.addEventListener('mouseenter',()=>clearInterval(timer));
+  root.addEventListener('mouseleave',start);
+
+  // Match the top 3 banners: swipe left/right on touch devices.
+  root.addEventListener('touchstart',e=>{
+    touchX=e.changedTouches[0].clientX;
+    clearInterval(timer);
+  },{passive:true});
+  root.addEventListener('touchend',e=>{
+    if(touchX!==null){
+      const dx=e.changedTouches[0].clientX-touchX;
+      if(Math.abs(dx)>45) show(current+(dx<0?1:-1));
+      touchX=null;
+    }
+    start();
+  },{passive:true});
+
+  // Match the top 3 banners: clicking a banner opens its corresponding service section.
+  slides.forEach((slide,index)=>{
+    slide.style.cursor='pointer';
+    slide.addEventListener('click',()=>goToService(index));
+  });
+
+  start();
+
+  const microwaveShareBtn=document.getElementById('microwaveShareBtn');
+  if(microwaveShareBtn) microwaveShareBtn.addEventListener('click',async(e)=>{
+    e.preventDefault();
+    e.stopPropagation();
+    const shareUrl=location.href;
+    const data={title:'FixyBuy Microwave Checkup',text:'Microwave Checkup service by FixyBuy.',url:shareUrl};
+    try{
+      if(navigator.share){
+        await navigator.share(data);
+      }else if(navigator.clipboard && window.isSecureContext){
+        await navigator.clipboard.writeText(shareUrl);
+        alert('FixyBuy link copied. You can now share it anywhere.');
+      }else{
+        const ta=document.createElement('textarea');
+        ta.value=shareUrl;
+        ta.setAttribute('readonly','');
+        ta.style.position='fixed';
+        ta.style.opacity='0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        alert('FixyBuy link copied. You can now share it anywhere.');
+      }
+    }catch(e){
+      // User cancelled the native share sheet; do not show an error.
+    }
+  });
+
+  const acShareBtn=document.getElementById('acShareBtn');
+  if(acShareBtn) acShareBtn.addEventListener('click',async(e)=>{
+    e.preventDefault();
+    e.stopPropagation();
+    const shareUrl=location.href;
+    const data={title:'FixyBuy AC Service',text:'AC Service by FixyBuy.',url:shareUrl};
+    try{
+      if(navigator.share){
+        await navigator.share(data);
+      }else if(navigator.clipboard && window.isSecureContext){
+        await navigator.clipboard.writeText(shareUrl);
+        alert('FixyBuy link copied. You can now share it anywhere.');
+      }else{
+        const ta=document.createElement('textarea');
+        ta.value=shareUrl;
+        ta.setAttribute('readonly','');
+        ta.style.position='fixed';
+        ta.style.opacity='0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        alert('FixyBuy link copied. You can now share it anywhere.');
+      }
+    }catch(e){
+      // User cancelled the native share sheet; do not show an error.
+    }
+  });
+
+  const washingShareBtn=document.getElementById('washingShareBtn');
+  if(washingShareBtn) washingShareBtn.addEventListener('click',async(e)=>{
+    e.preventDefault();
+    e.stopPropagation();
+    const shareUrl=location.href;
+    const data={title:'FixyBuy Washing Machine Repair',text:'Washing Machine Repair service by FixyBuy.',url:shareUrl};
+    try{
+      if(navigator.share){
+        await navigator.share(data);
+      }else if(navigator.clipboard && window.isSecureContext){
+        await navigator.clipboard.writeText(shareUrl);
+        alert('FixyBuy link copied. You can now share it anywhere.');
+      }else{
+        const ta=document.createElement('textarea');
+        ta.value=shareUrl;
+        ta.setAttribute('readonly','');
+        ta.style.position='fixed';
+        ta.style.opacity='0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        alert('FixyBuy link copied. You can now share it anywhere.');
+      }
+    }catch(e){
+      // User cancelled the native share sheet; do not show an error.
+    }
+  });
+})();
+</script>
+
+<script id="fixybuy-mobile-fan-scroll-reveal">
+(function(){
+  function initFanReveal(){
+    if(window.innerWidth>700) return;
+    const section=document.getElementById('fan-section');
+    if(!section || section.dataset.fanRevealReady==='1') return;
+    const cards=[...section.querySelectorAll('.fan-card')];
+    if(!cards.length) return;
+    section.dataset.fanRevealReady='1';
+    section.classList.add('fan-reveal-enabled');
+    if(!('IntersectionObserver' in window)){
+      cards.forEach(card=>card.classList.add('fan-card-visible'));
+      return;
+    }
+    const revealObserver=new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
+        const card=entry.target;
+        const index=cards.indexOf(card);
+        card.style.transitionDelay=((index%2)*90)+'ms';
+        requestAnimationFrame(()=>card.classList.add('fan-card-visible'));
+        revealObserver.unobserve(card);
+      });
+    },{threshold:.16,rootMargin:'0px 0px -25px 0px'});
+    cards.forEach(card=>revealObserver.observe(card));
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initFanReveal,{once:true});
+  else initFanReveal();
+  window.addEventListener('resize',initFanReveal,{passive:true});
+})();
+</script>
+
+<script id="fixybuy-mobile-ac-scroll-reveal-match-fan">
+(function(){
+  function initACReveal(){
+    if(window.innerWidth>700) return;
+    const section=document.getElementById('ac-installation-repair');
+    if(!section || section.dataset.acRevealReady==='1') return;
+    const cards=[...section.querySelectorAll('.inverter-stabilizer-card')];
+    if(!cards.length) return;
+    section.dataset.acRevealReady='1';
+    section.classList.add('ac-reveal-enabled');
+    if(!('IntersectionObserver' in window)){
+      cards.forEach(card=>card.classList.add('ac-card-visible'));
+      return;
+    }
+    const revealObserver=new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
+        const card=entry.target;
+        const index=cards.indexOf(card);
+        card.style.transitionDelay=((index%2)*90)+'ms';
+        requestAnimationFrame(()=>card.classList.add('ac-card-visible'));
+        revealObserver.unobserve(card);
+      });
+    },{threshold:.16,rootMargin:'0px 0px -25px 0px'});
+    cards.forEach(card=>revealObserver.observe(card));
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initACReveal,{once:true});
+  else initACReveal();
+  window.addEventListener('resize',initACReveal,{passive:true});
 })();
 </script>
 </body>
