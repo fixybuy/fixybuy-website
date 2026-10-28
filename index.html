@@ -4768,7 +4768,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 <script id="fixybuy-cart-functional-js">
 (function(){
-  var cardSelector='#festival-lights-installation .card[data-whatsapp-catalogue],#switch-section .card[data-whatsapp-catalogue],#fan-section .card[data-whatsapp-catalogue],#light-section .card[data-whatsapp-catalogue],#wiring-section .card[data-whatsapp-catalogue],#inverter-stabilizer-section .card[data-whatsapp-catalogue],#tap-install-repair-section .card[data-whatsapp-catalogue],#ac-installation-repair .card[data-whatsapp-catalogue],#refrigerator-checkup .card[data-whatsapp-catalogue],#washing-machine-services .card[data-whatsapp-catalogue],#chimney-installation-services .card[data-whatsapp-catalogue],#water-purifier-services .card[data-whatsapp-catalogue],#microwave-checkup .card[data-whatsapp-catalogue],#geyser-air-cooler-services .card[data-whatsapp-catalogue]';
+  var cardSelector='#festival-lights-installation .card[data-whatsapp-catalogue],#switch-section .card[data-whatsapp-catalogue],#fan-section .card[data-whatsapp-catalogue],#light-section .card[data-whatsapp-catalogue],#wiring-section .card[data-whatsapp-catalogue],#inverter-stabilizer-section .card[data-whatsapp-catalogue],#tap-install-repair-section .card[data-whatsapp-catalogue],#ac-installation-repair .card[data-whatsapp-catalogue],#refrigerator-checkup .card[data-whatsapp-catalogue],#washing-machine-services .card[data-whatsapp-catalogue],#chimney-installation-services .card[data-whatsapp-catalogue],#water-purifier-services .card[data-whatsapp-catalogue],#microwave-checkup .card[data-whatsapp-catalogue],#geyser-air-cooler-services .card[data-whatsapp-catalogue],#basin-drainage-section .card[data-whatsapp-catalogue],#motor-appliance-section .card[data-whatsapp-catalogue],#toilet-bath-section .card[data-whatsapp-catalogue]';
   var cart=[];
   function accountCartKey(){var id='';try{id=sessionStorage.getItem('fixybuySessionAccountV2')||'';}catch(_){} if(!id){try{id=localStorage.getItem('fixybuyCurrentAccount')||'';}catch(_){} }return id?'fixybuyCart_'+encodeURIComponent(String(id).trim().toLowerCase()):'fixybuyCart';}
   try{var __fxCartKey=accountCartKey();var __fxSavedCart=localStorage.getItem(__fxCartKey);if(localStorage.getItem('fixybuyCurrentAccount')&&__fxSavedCart===null){__fxSavedCart='[]';localStorage.setItem(__fxCartKey,__fxSavedCart);}cart=JSON.parse(__fxSavedCart||'[]');if(!Array.isArray(cart))cart=[];}catch(_){cart=[];}
@@ -5433,6 +5433,218 @@ section.tap-install-repair-section .tap-install-repair-card .current-price{displ
 .card .rating{display:inline-flex!important;align-items:center!important;justify-content:flex-start!important;flex:0 1 auto!important;min-width:0!important;margin:0!important;white-space:nowrap!important;}
 .card .service-price{display:flex!important;align-items:center!important;justify-content:flex-end!important;flex:0 0 auto!important;margin-left:auto!important;margin-right:0!important;white-space:nowrap!important;}
 @media(max-width:760px){.card .meta-row{justify-content:space-between!important;gap:4px!important}.card .rating{flex-shrink:1!important}.card .service-price{margin-left:auto!important;flex-shrink:0!important}}
+</style>
+
+
+<style id="fixybuy-section-scroll-arrows">
+/* Keep each service title on the left and place its arrow at the far-right edge of the section. */
+.fixybuy-service-title-arrow-row{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  vertical-align:middle!important;
+}
+.fixybuy-service-title-arrow-row h2{
+  margin-right:0!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+}
+.fixybuy-service-title-arrow-row .fixybuy-section-scroll-arrow{
+  margin-left:auto!important;
+  flex-shrink:0!important;
+}
+.fixybuy-section-scroll-arrow{
+  flex:0 0 32px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:32px!important;
+  height:32px!important;
+  padding:0!important;
+  margin:0!important;
+  border:1px solid #d7e5f7!important;
+  border-radius:50%!important;
+  background:#f4f8ff!important;
+  color:#1769d2!important;
+  box-shadow:0 2px 6px rgba(20,70,130,.10)!important;
+  cursor:pointer!important;
+  line-height:1!important;
+  font-size:22px!important;
+  font-weight:600!important;
+  position:relative!important;
+  z-index:2!important;
+  transition:background .18s ease,transform .18s ease!important;
+}
+.fixybuy-section-scroll-arrow:hover{background:#e5efff!important;transform:translateX(2px)!important;}
+.fixybuy-section-scroll-arrow:focus-visible{outline:2px solid #1769d2!important;outline-offset:2px!important;}
+.fixybuy-section-scroll-arrow svg{width:17px!important;height:17px!important;display:block!important;}
+@media(max-width:600px){
+  .fixybuy-service-title-arrow-row{gap:8px!important;width:100%!important;}
+  .fixybuy-section-scroll-arrow{flex-basis:30px!important;width:30px!important;height:30px!important;}
+}
+</style>
+<script id="fixybuy-section-scroll-arrows-script">
+(function(){
+  function addSectionArrows(){
+    document.querySelectorAll('section').forEach(function(section){
+      var row=section.querySelector('.row');
+      var cards=row?row.querySelectorAll('.card'):[];
+      var title=section.querySelector('h2');
+      if(!title || !row || cards.length<2 || section.querySelector('.fixybuy-section-scroll-arrow')) return;
+
+      var titleRow=document.createElement('div');
+      titleRow.className='fixybuy-service-title-arrow-row';
+      title.parentNode.insertBefore(titleRow,title);
+      titleRow.appendChild(title);
+
+      var button=document.createElement('button');
+      button.type='button';
+      button.className='fixybuy-section-scroll-arrow';
+      button.setAttribute('aria-label','আরও সার্ভিস দেখুন');
+      button.setAttribute('title','আরও সার্ভিস দেখুন');
+      button.innerHTML='<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      button.addEventListener('click',function(){
+        var distance=Math.max(180,Math.round(row.clientWidth*.72));
+        row.scrollBy({left:distance,top:0,behavior:'smooth'});
+      });
+      titleRow.appendChild(button);
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',addSectionArrows,{once:true});
+  else addSectionArrows();
+})();
+</script>
+
+
+
+<style id="tap-install-repair-match-inverter-layout-final">
+/* Tap Install & Repair: mirror the Inverter & Appliances section layout and card styling. */
+section.tap-install-repair-section{
+  margin:16px 0!important;
+  padding:14px!important;
+  border-radius:18px!important;
+  border:1px solid rgba(0,0,0,.06)!important;
+  overflow:hidden!important;
+  background:#f3efff!important;
+  scroll-margin-top:0!important;
+}
+section.tap-install-repair-section>h2{
+  margin:0 0 10px!important;
+  padding:0!important;
+}
+section.tap-install-repair-section .row{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  gap:14px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding-bottom:8px!important;
+  -webkit-overflow-scrolling:touch!important;
+  scrollbar-width:none!important;
+}
+section.tap-install-repair-section .row::-webkit-scrollbar{display:none!important;}
+section.tap-install-repair-section .tap-install-repair-card{
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+  height:auto!important;
+  min-height:0!important;
+}
+section.tap-install-repair-section .tap-install-repair-card .pic{
+  background:#fff!important;
+}
+section.tap-install-repair-section .tap-install-repair-card .service-img{
+  width:100%!important;height:100%!important;object-fit:contain!important;padding:8px!important;display:block!important;
+}
+section.tap-install-repair-section .tap-install-repair-card .label{
+  display:block!important;position:static!important;flex:0 0 auto!important;
+  padding:6px 10px 2px!important;margin:0!important;font-size:14px!important;line-height:1.15!important;
+  text-shadow:none!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+section.tap-install-repair-section .tap-install-repair-card .meta-row{
+  display:flex!important;position:static!important;flex:0 0 auto!important;align-items:center!important;
+  justify-content:space-between!important;gap:6px!important;width:auto!important;min-height:0!important;height:auto!important;
+  padding:3px 10px 7px!important;margin:0!important;overflow:visible!important;visibility:visible!important;opacity:1!important;
+}
+section.tap-install-repair-section .tap-install-repair-card .rating{
+  display:block!important;flex:0 1 auto!important;min-width:0!important;white-space:nowrap!important;
+  overflow:visible!important;visibility:visible!important;opacity:1!important;color:#fff!important;
+  font-size:11px!important;line-height:1.1!important;font-weight:700!important;padding:0!important;margin:0!important;
+}
+section.tap-install-repair-section .tap-install-repair-card .rating .star{display:inline!important;color:#f4c542!important;margin-right:4px!important;}
+section.tap-install-repair-section .tap-install-repair-card .review-count{display:inline!important;visibility:visible!important;opacity:1!important;color:inherit!important;font-size:inherit!important;}
+section.tap-install-repair-section .tap-install-repair-card .service-price{
+  display:flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:flex-end!important;gap:5px!important;
+  min-width:max-content!important;visibility:visible!important;opacity:1!important;overflow:visible!important;white-space:nowrap!important;
+  padding:0!important;margin:0 0 0 auto!important;color:#16c784!important;font-size:12px!important;font-weight:900!important;line-height:1.1!important;
+}
+section.tap-install-repair-section .tap-install-repair-card .old-price{display:inline!important;visibility:visible!important;opacity:1!important;color:#8fa39b!important;text-decoration:line-through!important;font-size:10px!important;font-weight:500!important;}
+section.tap-install-repair-section .tap-install-repair-card .discount{color:#16c784!important;font-size:10px!important;font-weight:800!important;}
+section.tap-install-repair-section .tap-install-repair-card .current-price{display:inline!important;visibility:visible!important;opacity:1!important;color:#fff!important;font-size:12px!important;font-weight:900!important;margin:0 0 0 auto!important;}
+@media(max-width:700px){
+  section.tap-install-repair-section{margin:14px 0!important;padding:12px!important;border-radius:16px!important;}
+  section.tap-install-repair-section .row{gap:14px!important;}
+}
+</style>
+
+<style id="toilet-bath-exact-inverter-appliances-layout">
+/* Toilet & Bath: match the Inverter & Appliances section layout and card styling exactly. */
+section.toilet-bath-section{
+  margin:16px 0!important;padding:14px!important;border-radius:18px!important;
+  border:1px solid rgba(0,0,0,.06)!important;overflow:hidden!important;
+  background:#f3efff!important;scroll-margin-top:0!important;
+}
+section.toilet-bath-section .toilet-bath-heading{margin:0 0 10px!important;padding:0!important;}
+section.toilet-bath-section .toilet-bath-heading h2{margin:0!important;padding:0!important;}
+section.toilet-bath-section .toilet-bath-row{
+  display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:14px!important;
+  overflow-x:auto!important;overflow-y:hidden!important;padding-bottom:8px!important;
+  -webkit-overflow-scrolling:touch!important;scrollbar-width:none!important;
+}
+section.toilet-bath-section .toilet-bath-row::-webkit-scrollbar{display:none!important;}
+section.toilet-bath-section .toilet-bath-card{
+  display:flex!important;flex-direction:column!important;overflow:hidden!important;height:auto!important;min-height:0!important;
+}
+section.toilet-bath-section .toilet-bath-card .pic{background:#fff!important;}
+section.toilet-bath-section .toilet-bath-card .service-img{
+  width:100%!important;height:100%!important;object-fit:contain!important;padding:8px!important;display:block!important;
+}
+section.toilet-bath-section .toilet-bath-card .label{
+  display:block!important;position:static!important;flex:0 0 auto!important;
+  padding:6px 10px 2px!important;margin:0!important;font-size:14px!important;line-height:1.15!important;
+  text-shadow:none!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+section.toilet-bath-section .toilet-bath-card .meta-row{
+  display:flex!important;position:static!important;flex:0 0 auto!important;align-items:center!important;
+  justify-content:space-between!important;gap:6px!important;width:auto!important;min-height:0!important;height:auto!important;
+  padding:3px 10px 7px!important;margin:0!important;overflow:visible!important;visibility:visible!important;opacity:1!important;
+}
+section.toilet-bath-section .toilet-bath-card .rating{
+  display:block!important;flex:0 1 auto!important;min-width:0!important;white-space:nowrap!important;overflow:visible!important;
+  visibility:visible!important;opacity:1!important;color:#1e2c33!important;font-size:11px!important;line-height:1.1!important;
+  font-weight:700!important;padding:0!important;margin:0!important;
+}
+section.toilet-bath-section .toilet-bath-card .rating .star{display:inline!important;color:#f4c542!important;margin-right:4px!important;}
+section.toilet-bath-section .toilet-bath-card .review-count{display:inline!important;visibility:visible!important;opacity:1!important;color:inherit!important;font-size:inherit!important;}
+section.toilet-bath-section .toilet-bath-card .service-price{
+  display:flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:flex-end!important;gap:5px!important;
+  min-width:max-content!important;visibility:visible!important;opacity:1!important;overflow:visible!important;white-space:nowrap!important;
+  padding:0!important;margin:0 0 0 auto!important;color:#1e2c33!important;font-size:12px!important;line-height:1.1!important;font-weight:900!important;
+}
+section.toilet-bath-section .toilet-bath-card .old-price{display:inline!important;visibility:visible!important;opacity:1!important;color:#8fa39b!important;text-decoration:line-through!important;font-size:10px!important;font-weight:500!important;}
+section.toilet-bath-section .toilet-bath-card .current-price{display:inline!important;visibility:visible!important;opacity:1!important;color:#16c784!important;font-size:12px!important;font-weight:900!important;margin:0!important;}
+@media(max-width:700px){
+  section.toilet-bath-section .toilet-bath-row{gap:14px!important;}
+  section.toilet-bath-section .toilet-bath-card .label{font-size:14px!important;padding:6px 10px 2px!important;}
+  section.toilet-bath-section .toilet-bath-card .meta-row{gap:6px!important;padding:3px 10px 7px!important;}
+  section.toilet-bath-section .toilet-bath-card .rating{font-size:11px!important;}
+  section.toilet-bath-section .toilet-bath-card .service-price{gap:5px!important;font-size:12px!important;}
+}
 </style>
 
 </body>
@@ -6176,5 +6388,158 @@ header#header .cart-btn:hover{background:#f6f6f6!important;color:#111111!importa
 .microwave-checkup-section .service-img,
 .geyser-air-cooler-services-section .service-img{
   border-radius:14px!important;
+}
+</style>
+
+
+<style id="basin-drainage-exact-inverter-appliances-layout">
+/* Basin & Drainage: match the Inverter & Appliances section layout and card styling exactly. */
+section.basin-drainage-section{
+  margin:16px 0!important;padding:14px!important;border-radius:18px!important;
+  border:1px solid rgba(0,0,0,.06)!important;overflow:hidden!important;
+  background:#f3efff!important;scroll-margin-top:0!important;
+}
+section.basin-drainage-section .basin-drainage-heading{margin:0 0 10px!important;padding:0!important;}
+section.basin-drainage-section .basin-drainage-heading h2{margin:0!important;padding:0!important;}
+section.basin-drainage-section .basin-drainage-row{
+  display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:14px!important;
+  overflow-x:auto!important;overflow-y:hidden!important;padding-bottom:8px!important;
+  -webkit-overflow-scrolling:touch!important;scrollbar-width:none!important;
+}
+section.basin-drainage-section .basin-drainage-row::-webkit-scrollbar{display:none!important;}
+section.basin-drainage-section .basin-drainage-card{
+  display:flex!important;flex-direction:column!important;overflow:hidden!important;height:auto!important;min-height:0!important;
+}
+section.basin-drainage-section .basin-drainage-card .pic{background:#fff!important;}
+section.basin-drainage-section .basin-drainage-card .service-img{
+  width:100%!important;height:100%!important;object-fit:contain!important;padding:8px!important;display:block!important;
+}
+section.basin-drainage-section .basin-drainage-card .label{
+  display:block!important;position:static!important;flex:0 0 auto!important;
+  padding:6px 10px 2px!important;margin:0!important;font-size:14px!important;line-height:1.15!important;
+  text-shadow:none!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+section.basin-drainage-section .basin-drainage-card .meta-row{
+  display:flex!important;position:static!important;flex:0 0 auto!important;align-items:center!important;
+  justify-content:space-between!important;gap:6px!important;width:auto!important;min-height:0!important;height:auto!important;
+  padding:3px 10px 7px!important;margin:0!important;overflow:visible!important;visibility:visible!important;opacity:1!important;
+}
+section.basin-drainage-section .basin-drainage-card .rating{
+  display:block!important;flex:0 1 auto!important;min-width:0!important;white-space:nowrap!important;overflow:visible!important;
+  visibility:visible!important;opacity:1!important;color:#1e2c33!important;font-size:11px!important;line-height:1.1!important;
+  font-weight:700!important;padding:0!important;margin:0!important;
+}
+section.basin-drainage-section .basin-drainage-card .rating .star{display:inline!important;color:#f4c542!important;margin-right:4px!important;}
+section.basin-drainage-section .basin-drainage-card .review-count{display:inline!important;visibility:visible!important;opacity:1!important;color:inherit!important;font-size:inherit!important;}
+section.basin-drainage-section .basin-drainage-card .service-price{
+  display:flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:flex-end!important;gap:5px!important;
+  min-width:max-content!important;visibility:visible!important;opacity:1!important;overflow:visible!important;white-space:nowrap!important;
+  padding:0!important;margin:0 0 0 auto!important;color:#1e2c33!important;font-size:12px!important;line-height:1.1!important;font-weight:900!important;
+}
+section.basin-drainage-section .basin-drainage-card .old-price{display:inline!important;visibility:visible!important;opacity:1!important;color:#8fa39b!important;text-decoration:line-through!important;font-size:10px!important;font-weight:500!important;}
+section.basin-drainage-section .basin-drainage-card .discount{color:#16c784!important;font-size:10px!important;font-weight:800!important;}
+section.basin-drainage-section .basin-drainage-card .current-price{display:inline!important;visibility:visible!important;opacity:1!important;color:#16c784!important;font-size:12px!important;font-weight:900!important;margin:0!important;}
+@media(max-width:700px){
+  section.basin-drainage-section{margin:14px 0!important;padding:12px!important;border-radius:16px!important;}
+  section.basin-drainage-section .basin-drainage-row{gap:14px!important;}
+  section.basin-drainage-section .basin-drainage-card .label{font-size:14px!important;padding:6px 10px 2px!important;}
+  section.basin-drainage-section .basin-drainage-card .meta-row{gap:6px!important;padding:3px 10px 7px!important;}
+  section.basin-drainage-section .basin-drainage-card .rating{font-size:11px!important;}
+  section.basin-drainage-section .basin-drainage-card .service-price{gap:5px!important;font-size:12px!important;}
+}
+</style>
+
+
+<style id="motor-appliance-exact-inverter-appliances-layout">
+/* Motor & Appliance Connection: match the Inverter & Appliances section layout and card styling exactly. */
+section.motor-appliance-section{
+  margin:16px 0!important;padding:14px!important;border-radius:18px!important;
+  border:1px solid rgba(0,0,0,.06)!important;overflow:hidden!important;
+  background:#f3efff!important;scroll-margin-top:0!important;
+}
+section.motor-appliance-section .motor-appliance-heading{margin:0 0 10px!important;padding:0!important;}
+section.motor-appliance-section .motor-appliance-heading h2{margin:0!important;padding:0!important;}
+section.motor-appliance-section .motor-appliance-row{
+  display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:14px!important;
+  overflow-x:auto!important;overflow-y:hidden!important;padding-bottom:8px!important;
+  -webkit-overflow-scrolling:touch!important;scrollbar-width:none!important;
+}
+section.motor-appliance-section .motor-appliance-row::-webkit-scrollbar{display:none!important;}
+section.motor-appliance-section .motor-appliance-card{
+  display:flex!important;flex-direction:column!important;overflow:hidden!important;height:auto!important;min-height:0!important;
+}
+section.motor-appliance-section .motor-appliance-card .pic{background:#fff!important;}
+section.motor-appliance-section .motor-appliance-card .service-img{
+  width:100%!important;height:100%!important;object-fit:contain!important;padding:8px!important;display:block!important;
+}
+section.motor-appliance-section .motor-appliance-card .label{
+  display:block!important;position:static!important;flex:0 0 auto!important;
+  padding:6px 10px 2px!important;margin:0!important;font-size:14px!important;line-height:1.15!important;
+  text-shadow:none!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+section.motor-appliance-section .motor-appliance-card .meta-row{
+  display:flex!important;position:static!important;flex:0 0 auto!important;align-items:center!important;
+  justify-content:space-between!important;gap:6px!important;width:auto!important;min-height:0!important;height:auto!important;
+  padding:3px 10px 7px!important;margin:0!important;overflow:visible!important;visibility:visible!important;opacity:1!important;
+}
+section.motor-appliance-section .motor-appliance-card .rating{
+  display:block!important;flex:0 1 auto!important;min-width:0!important;white-space:nowrap!important;overflow:visible!important;
+  visibility:visible!important;opacity:1!important;color:#1e2c33!important;font-size:11px!important;line-height:1.1!important;
+  font-weight:700!important;padding:0!important;margin:0!important;
+}
+section.motor-appliance-section .motor-appliance-card .rating .star{display:inline!important;color:#f4c542!important;margin-right:4px!important;}
+section.motor-appliance-section .motor-appliance-card .review-count{display:inline!important;visibility:visible!important;opacity:1!important;color:inherit!important;font-size:inherit!important;}
+section.motor-appliance-section .motor-appliance-card .service-price{
+  display:flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:flex-end!important;gap:5px!important;
+  min-width:max-content!important;visibility:visible!important;opacity:1!important;overflow:visible!important;white-space:nowrap!important;
+  padding:0!important;margin:0 0 0 auto!important;color:#1e2c33!important;font-size:12px!important;line-height:1.1!important;font-weight:900!important;
+}
+section.motor-appliance-section .motor-appliance-card .old-price{display:inline!important;visibility:visible!important;opacity:1!important;color:#8fa39b!important;text-decoration:line-through!important;font-size:10px!important;font-weight:500!important;}
+section.motor-appliance-section .motor-appliance-card .discount{color:#16c784!important;font-size:10px!important;font-weight:800!important;}
+section.motor-appliance-section .motor-appliance-card .current-price{display:inline!important;visibility:visible!important;opacity:1!important;color:#16c784!important;font-size:12px!important;font-weight:900!important;margin:0!important;}
+@media(max-width:700px){
+  section.motor-appliance-section{margin:14px 0!important;padding:12px!important;border-radius:16px!important;}
+  section.motor-appliance-section .motor-appliance-row{gap:14px!important;}
+  section.motor-appliance-section .motor-appliance-card .label{font-size:14px!important;padding:6px 10px 2px!important;}
+  section.motor-appliance-section .motor-appliance-card .meta-row{gap:6px!important;padding:3px 10px 7px!important;}
+  section.motor-appliance-section .motor-appliance-card .rating{font-size:11px!important;}
+  section.motor-appliance-section .motor-appliance-card .service-price{gap:5px!important;font-size:12px!important;}
+}
+</style>
+
+
+<style id="fixybuy-four-service-sections-distinct-backgrounds">
+/* Distinct pastel backgrounds for the four requested service sections only. */
+section.tap-install-repair-section{background:#eaf7ff!important;}
+section.motor-appliance-section{background:#eafaf2!important;}
+section.basin-drainage-section{background:#fff6ea!important;}
+section.toilet-bath-section{background:#f3efff!important;}
+</style>
+
+
+<style id="fixybuy-tap-rating-price-visibility-fix">
+/* Fix Tap Install & Repair rating and price visibility on the light service cards. */
+section.tap-install-repair-section .tap-install-repair-card .meta-row{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  width:100%!important;box-sizing:border-box!important;overflow:visible!important;
+}
+section.tap-install-repair-section .tap-install-repair-card .rating{
+  display:inline-flex!important;align-items:center!important;flex:0 1 auto!important;
+  min-width:0!important;color:#263238!important;visibility:visible!important;opacity:1!important;
+  white-space:nowrap!important;overflow:visible!important;
+}
+section.tap-install-repair-section .tap-install-repair-card .rating .star{color:#f4b400!important;}
+section.tap-install-repair-section .tap-install-repair-card .rating .review-count{color:#59666b!important;}
+section.tap-install-repair-section .tap-install-repair-card .service-price{
+  display:flex!important;align-items:center!important;justify-content:flex-end!important;
+  flex:0 0 auto!important;min-width:max-content!important;margin-left:auto!important;
+  color:#138a54!important;visibility:visible!important;opacity:1!important;overflow:visible!important;
+}
+section.tap-install-repair-section .tap-install-repair-card .old-price{color:#778781!important;}
+section.tap-install-repair-section .tap-install-repair-card .current-price{color:#138a54!important;}
+@media(max-width:700px){
+  section.tap-install-repair-section .tap-install-repair-card .meta-row{gap:4px!important;padding-left:7px!important;padding-right:7px!important;}
+  section.tap-install-repair-section .tap-install-repair-card .rating{font-size:9px!important;}
+  section.tap-install-repair-section .tap-install-repair-card .service-price{font-size:10px!important;}
 }
 </style>
