@@ -3150,7 +3150,7 @@ header#header .account-btn .account-avatar svg{
 <article class="hero-slide active festive-banner">
 <div class="hero-copy">
 <span class="save-badge">Festive design</span>
-<h1>Happy Diwali<br/><strong>brighten your celebration</strong></h1>
+<h1>Happy Time<br/><strong>brighten your celebration</strong></h1>
 <p>Beautiful house lighting &amp; festive electrical decoration by FixyBuy.</p>
 </div>
 <div class="hero-image"><img alt="Indian house with decorative hanging string lights in daylight" decoding="async" fetchpriority="high" src="https://static.langimg.com/nbt/thumb/124682440/youth-electric-shock-during-house-decoration-in-diwali.jpg?height=900&imgsize=98894&resizemode=75&width=1600"/></div>
@@ -5647,6 +5647,36 @@ section.toilet-bath-section .toilet-bath-card .current-price{display:inline!impo
 }
 </style>
 
+
+<style id="fixybuy-floating-call-color-ring-final">
+/* Animated multicolour ring around the floating Call button only. */
+.floating-contact-wrap .floating-call{
+  position:relative!important;
+  isolation:isolate!important;
+  z-index:0!important;
+  overflow:visible!important;
+}
+.floating-contact-wrap .floating-call::before{
+  content:"";
+  position:absolute;
+  inset:-5px;
+  border:3px solid transparent;
+  border-radius:50%;
+  background:linear-gradient(#fff,#fff) padding-box,
+    conic-gradient(from 0deg,#ff3b3b,#ff9f1c,#ffe347,#35d07f,#19c9e8,#477bff,#b34dff,#ff3b9d,#ff3b3b) border-box;
+  animation:fixybuyCallRingRotate 3s linear infinite,fixybuyCallRingGlow 2s ease-in-out infinite;
+  pointer-events:none;
+  z-index:-1;
+}
+@keyframes fixybuyCallRingRotate{to{transform:rotate(360deg)}}
+@keyframes fixybuyCallRingGlow{
+  0%,100%{filter:drop-shadow(0 0 3px rgba(53,208,127,.38))}
+  50%{filter:drop-shadow(0 0 8px rgba(71,123,255,.62))}
+}
+@media(prefers-reduced-motion:reduce){
+  .floating-contact-wrap .floating-call::before{animation:none}
+}
+</style>
 </body>
 </html>
 <style id="fixybuy-final-professional-header-tune">
